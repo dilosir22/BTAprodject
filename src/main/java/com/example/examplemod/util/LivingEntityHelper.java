@@ -11,27 +11,26 @@ import java.util.List;
 
 public class LivingEntityHelper {
 
-  //  public static List<SpawnListEntry> monsterList;
-   static Field thefield;
+   static Field monsterList;
 
     static {
         try{
-            Field[] feilds = BiomeGenBase.forest.getClass().getDeclaredFields();
+            Field[] feilds = BiomeGenBase.class.getDeclaredFields();
             for(Field feild : feilds) {
                     if(feild.toString().equals("spawnableMonsterList")) {
-                        thefield = feild;
+                        monsterList = feild;
                     }
             }
-            if(thefield == null) throw new RuntimeException("Could not find monsterlist feild!");
-            thefield.setAccessible(true);
+            if(monsterList == null) throw new RuntimeException("Could not find spawnableMonsterList feild!");
+            monsterList.setAccessible(true);
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void addMonster(SpawnListEntry monster){
+    public static void addMonster(SpawnListEntry monster, Object biome){
         try {
-            ((List<SpawnListEntry>) thefield.get(BiomeGenBase.seasonalForest.getClass())).add(monster);
+            ((List<SpawnListEntry>) monsterList.get(biome)).add(monster);
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
