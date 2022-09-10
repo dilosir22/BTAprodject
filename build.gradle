@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'com.example'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+    ivy {
+        url = "https://github.com/Better-than-Adventure"
+        patternLayout {
+            artifact("[organisation]/releases/download/v[revision]/[module].jar")
+            m2compatible = true
+        }
+        metadataSources { artifact() }
+    }
+}
+
+dependencies {
+    implementation "bta-download-repo:bta:1.7.6.2_02"
+}
+
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.withType(JavaCompile) {
+	options.release.set 8
+}
