@@ -6,6 +6,7 @@ import net.minecraft.src.SpawnListEntry;
 
 import java.lang.reflect.*;
 import java.util.List;
+import java.util.ArrayList;
 
 public class LivingEntityHelper {
 
@@ -27,9 +28,13 @@ public class LivingEntityHelper {
         }
     }
     @SuppressWarnings("unchecked")
-    public static void addMonster(SpawnListEntry monster, Object biome){
+    public static void addMonster(SpawnListEntry monster, BiomeGenBase biome){
         try {
-            ((List<SpawnListEntry>) monsterList.get(biome)).add(monster);
+                if(monsterList.get((biome)) instanceof ArrayList){
+                    ((ArrayList) monsterList.get((biome))).add(monster);
+                }else{
+                    System.out.println(monster.entityClass.getName() + " could not be added to "+biome.biomeName);
+                }
         }catch (Exception e) {
             throw new RuntimeException(e);
         }

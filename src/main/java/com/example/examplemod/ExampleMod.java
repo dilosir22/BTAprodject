@@ -12,8 +12,10 @@ public class ExampleMod implements Mod {
 
     @Override
     public void init(Minecraft minecraft) {
-            LivingEntityHelper.addMonster( new SpawnListEntry(EntityForestSpider.class, 100), BiomeGenBase.seasonalForest.getClass());
-            LivingEntityHelper.addMonster( new SpawnListEntry(EntitySpider.class, 100), BiomeGenBase.seasonalForest.getClass());
+
+        System.out.println( BiomeGenBase.seasonalForest.getClass().getName());
+            LivingEntityHelper.addMonster( new SpawnListEntry(EntityForestSpider.class, 100), BiomeGenBase.seasonalForest);
+            LivingEntityHelper.addMonster( new SpawnListEntry(EntitySpider.class, 100), BiomeGenBase.seasonalForest);
         System.out.println("[Spiders] should be Initialized.");
     }
 
