@@ -5,6 +5,7 @@ import net.minecraft.src.*;
 import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class LivingEntityHelper {
 
@@ -51,6 +52,13 @@ public class LivingEntityHelper {
         try {
             if(ERenderMap.get(RenderManager.instance) instanceof HashMap) {
                 ((HashMap) ERenderMap.get(RenderManager.instance)).put(entity, renderer);
+
+
+                Iterator iterator = ((HashMap) ERenderMap.get(RenderManager.instance)).values().iterator();
+                while(iterator.hasNext()) {
+                    Render render = (Render)iterator.next();
+                    render.setRenderManager(RenderManager.instance);
+                }
             }else{
                 System.out.println(entity.getName() + "'s renderer could not be added to rendermanager");
             }

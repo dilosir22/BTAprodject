@@ -11,7 +11,7 @@ public class EntityForestSpider extends EntitySpider {
 
     @Override
     public void entityInitOnSpawn() {
-        super.entityInit();
+        //this.dataWatcher.addObject(31, new Byte((byte)1));
         if (this.worldObj.difficultySetting != 0 && this.rand.nextInt(60 / this.worldObj.difficultySetting) == 0) {
             EntityArmouredZombie entityzombie = new EntityArmouredZombie(this.worldObj);
             entityzombie.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
