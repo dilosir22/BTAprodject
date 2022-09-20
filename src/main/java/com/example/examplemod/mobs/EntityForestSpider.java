@@ -9,7 +9,7 @@ public class EntityForestSpider extends EntitySpider {
         super(world);
         this.moveSpeed = 0.6f;
         this.health = 35;
-        this.texture = "/com/example/examplemod/mobs/textures/forestspider.png";
+        this.texture = "/mob/forestspider.png";
     }
 
     @Override
