@@ -1,6 +1,7 @@
 package com.example.examplemod;
 
 import bta.Mod;
+import com.example.examplemod.mobs.RenderForestSpider;
 import com.example.examplemod.util.LivingEntityHelper;
 import net.minecraft.client.Minecraft;
 import com.example.examplemod.mobs.EntityForestSpider;
@@ -13,8 +14,8 @@ public class ExampleMod implements Mod {
     @Override
     public void init(Minecraft minecraft) {
 
-        LivingEntityHelper.addMonster( new SpawnListEntry(EntityForestSpider.class, 100), BiomeGenBase.seasonalForest);
-        LivingEntityHelper.addEntityRenderMapping(EntityForestSpider.class, new RenderSpider());
+        LivingEntityHelper.addMonster( new SpawnListEntry(EntityForestSpider.class, 10), BiomeGenBase.seasonalForest);
+        LivingEntityHelper.addEntityRenderMapping(EntityForestSpider.class, new RenderForestSpider());
         LivingEntityHelper.registerEntity(EntityForestSpider.class, "ForestSpider", 120);
         System.out.println("[Spiders] should be Initialized.");
 
