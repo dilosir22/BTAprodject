@@ -1,5 +1,6 @@
-package com.example.examplemod.mobs;
+package com.example.examplemod.mobs.ForestSpider;
 
+import com.example.examplemod.mobs.MiniSpider.EntityMiniSpider;
 import net.minecraft.src.*;
 import net.minecraft.src.helper.DamageType;
 
@@ -16,7 +17,7 @@ public class EntityForestSpider extends EntitySpider {
 
     @Override
     public void entityInitOnSpawn() {}
-
+//find some way to get attack many animals
     @Override
     protected void attackEntity(Entity entity, float f) {
         if (this.rand.nextInt(30/ this.worldObj.difficultySetting) == 0) {
@@ -34,9 +35,9 @@ public class EntityForestSpider extends EntitySpider {
                 this.motionY = 0.4000000059604645;
                 hasjumped = true;
             }}
-            if(this.rand.nextInt(9/this.worldObj.difficultySetting)==0 && minions <= 10){
+            if(this.rand.nextInt(9/this.worldObj.difficultySetting)==0 && minions <= health/4){
                 for(int i = 0; i < 3; i++){
-                    EntitySpider minispider = new EntitySpider(this.worldObj);
+                    EntityMiniSpider minispider = new EntityMiniSpider(this.worldObj, this);
                     minispider.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
                     this.worldObj.entityJoinedWorld(minispider);
                     minions++;

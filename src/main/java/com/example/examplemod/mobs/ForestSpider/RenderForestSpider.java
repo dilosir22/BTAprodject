@@ -1,9 +1,9 @@
-package com.example.examplemod.mobs;
+package com.example.examplemod.mobs.ForestSpider;
 
+import com.example.examplemod.mobs.ForestSpider.ModelForestSpider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EntitySpider;
-import net.minecraft.src.ModelSpider;
 import net.minecraft.src.RenderLiving;
 
 public class RenderForestSpider extends RenderLiving {

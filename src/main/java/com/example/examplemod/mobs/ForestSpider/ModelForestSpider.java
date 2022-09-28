@@ -1,4 +1,4 @@
-package com.example.examplemod.mobs;
+package com.example.examplemod.mobs.ForestSpider;
 
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.ModelBase;
