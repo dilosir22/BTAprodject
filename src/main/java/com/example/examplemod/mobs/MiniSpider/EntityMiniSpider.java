@@ -53,7 +53,7 @@ public class EntityMiniSpider extends EntitySpider {
 
 
     public void onLivingUpdate(){
-        if(Target.isDead || Target == null){
+        if(Target.isDead || Target == null || mother.isDead){
             super.attackEntityFrom((Entity)null, 100, (DamageType)null);
         }
         super.onLivingUpdate();
