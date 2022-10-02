@@ -8,6 +8,7 @@ import net.minecraft.src.helper.DamageType;
 public class EntityMiniSpider extends EntitySpider {
     private Entity Target = null;
     private EntityForestSpider mother = null;
+    private boolean persistant = false;
     public EntityMiniSpider(World world) {
         super(world);
         this.setSize(1.2F, 2.3F);//change later
@@ -15,12 +16,14 @@ public class EntityMiniSpider extends EntitySpider {
         this.health = 4;
         this.texture = "/mob/forestspider.png";
         this.attackStrength = 2;
+        persistant = true;
     }
     public EntityMiniSpider(World world, EntityForestSpider mom) {
         this(world);
         Target = mom.getTarget();
         setTarget(Target);
         mother = mom;
+        persistant = false;
     }
 
     @Override
@@ -45,19 +48,22 @@ public class EntityMiniSpider extends EntitySpider {
 
     }
 
-    public boolean shouldDie(){
-        if(Target == null ||  mother == null){
-            return true;
-        }else if (Target.isDead || mother.isDead ){
-            return true;
-        }
-        return false;
-    }
 
     public void onLivingUpdate(){
-        if(shouldDie()){
-            super.attackEntityFrom((Entity)null, 100, (DamageType)null);
+        if(!persistant){
+            if(Target == null ||  mother == null){
+                this.mother = (EntityForestSpider)locateNearestMother(16);
+                if(mother == null){
+                    super.attackEntityFrom((Entity)null, 100, (DamageType)null);
+                }else{
+                    Target = mother.getTarget();
+                    setTarget(Target);
+                }
+            }else if (Target.isDead || mother.isDead ){
+                super.attackEntityFrom((Entity)null, 100, (DamageType)null);
+            }
         }
+
         super.onLivingUpdate();
     }
 
@@ -77,10 +83,10 @@ public class EntityMiniSpider extends EntitySpider {
 
         for(int i = 0; i < this.worldObj.loadedEntityList.size(); ++i) {
             Entity mob1 = this.worldObj.loadedEntityList.get(i);
-            double d5 = mob1.getDistanceSq(this.posX, this.posY, this.posZ);
-            if ((d3 < 0.0 || d5 < d3 * d3) && (d4 == -1.0 || d5 < d4)) {
-                d4 = d5;
-                if(mob1 instanceof EntityForestSpider){
+            if (mob1 instanceof EntityForestSpider){
+                double d5 = mob1.getDistanceSq(this.posX, this.posY, this.posZ);
+                if ((d3 < 0.0 || d5 < d3 * d3) && (d4 == -1.0 || d5 < d4)) {
+                    d4 = d5;
                     entity = mob1;
                 }
             }
@@ -92,17 +98,12 @@ public class EntityMiniSpider extends EntitySpider {
     @Override
     public void writeEntityToNBT(NBTTagCompound nbttagcompound) {
         super.writeEntityToNBT(nbttagcompound);
+        nbttagcompound.setBoolean("Persistant", (boolean)this.persistant);
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound nbttagcompound) {
         super.readEntityFromNBT(nbttagcompound);
-        this.mother = (EntityForestSpider)locateNearestMother(-1);
-        if(mother == null){
-            super.attackEntityFrom((Entity)null, 100, (DamageType)null);
-        }else{
-            Target = mother.getTarget();
-            setTarget(Target);
-        }
+        this.persistant = nbttagcompound.getBoolean("Persistant");
     }
 }
