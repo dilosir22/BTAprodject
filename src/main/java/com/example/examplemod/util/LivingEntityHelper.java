@@ -74,5 +74,27 @@ public class LivingEntityHelper {
             throw new RuntimeException(e);
         }
     }
+//
+//    public static Entity getClosestEntityToEntity(World worldObj, Entity entity, double d, Class<? extends Entity> type){
+//        return locateNearestEntity(worldObj, entity.posX, entity.posY, entity.posZ, d, type);
+//    }
+//
+//    public static Entity locateNearestEntity(World worldObj, double d, double d1, double d2, double d3, Class<? extends Entity> typ){
+//        double d4 = -1.0;
+//        Entity entity = null;
+//
+//        for(int i = 0; i < worldObj.loadedEntityList.size(); ++i) {
+//            Entity mob1 = worldObj.loadedEntityList.get(i);
+//            double d5 = mob1.getDistanceSq(d, d1, d2);
+//            if ((d3 < 0.0 || d5 < d3 * d3) && (d4 == -1.0 || d5 < d4)) {
+//                d4 = d5;
+//                if(mob1.getClass().isInstance(typ)){
+//                    entity = mob1;
+//                }
+//            }
+//        }
+//
+//        return entity;
+//    }
 
 }
