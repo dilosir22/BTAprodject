@@ -37,7 +37,7 @@ public class EntityForestSpider extends EntitySpider {
                 this.motionZ = (d1 / (double)f2 * 0.5 * 0.800000011920929 + this.motionZ * 0.20000000298023224);
                 this.motionY = 0.4000000059604645;
                 hasjumped = true;
-            }else if(f<6){
+            }else if(f<6 && this.rand.nextInt(20)==0){
                 this.motionX = -1.5 * (d / (double) f2 * 0.5 * 0.800000011920929 + this.motionX * 0.20000000298023224);
                 this.motionZ = -1.5 * (d1 / (double) f2 * 0.5 * 0.800000011920929 + this.motionZ * 0.20000000298023224);
                 this.motionY = 0.1000000059604645;
