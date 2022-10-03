@@ -46,22 +46,18 @@ public class EntityMoa extends EntityAnimal {
     }
 
     public void onUpdate(){
-        super.onUpdate();
-        if (this.riddenByEntity != null) {
-            this.motionX += this.riddenByEntity.motionX * 0.4;
-            this.motionZ += this.riddenByEntity.motionZ * 0.4;
-        }
         if (this.riddenByEntity != null && this.riddenByEntity.isDead) {
             this.riddenByEntity = null;
         }
         if (this.riddenByEntity != null) {
             this.motionX += this.riddenByEntity.motionX * 1.4;
-            this.motionZ += this.riddenByEntity.motionZ * 0.4;
-            if(this.riddenByEntity.motionZ > 0){
-                this.rotationYaw += 12;
-            } else if (this.riddenByEntity.motionZ < 0) {
-                this.rotationYaw -= 12;
-            }
+            this.motionZ += this.riddenByEntity.motionZ * 1.4;
+            this.moveEntity(this.motionX, this.motionY > 0 ? 0 : this.motionY,this.motionZ);
+//            if(this.riddenByEntity.rotationYaw != this.rotationYaw){
+                this.rotationYaw += 0.2*((EntityPlayerSP)this.riddenByEntity).movementInput.lookYaw;
+//            }
+        }else{
+            super.onUpdate();
         }
     }
     public double getMountedYOffset() {
