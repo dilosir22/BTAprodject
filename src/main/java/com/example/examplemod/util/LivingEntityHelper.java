@@ -46,6 +46,9 @@ public class LivingEntityHelper {
     public static void addMonster(SpawnListEntry monster, BiomeGenBase biome){
         biome.getSpawnableList(EnumCreatureType.monster).add(monster);
     }
+    public static void addCreature(SpawnListEntry creature, BiomeGenBase biome){
+        biome.getSpawnableList(EnumCreatureType.creature).add(creature);
+    }
 
     @SuppressWarnings("unchecked")
     public static void addEntityRenderMapping(Class entity, Object renderer){

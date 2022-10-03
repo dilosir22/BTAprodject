@@ -3,6 +3,8 @@ package com.example.examplemod;
 import bta.Mod;
 import com.example.examplemod.mobs.ForestSpider.RenderForestSpider;
 import com.example.examplemod.mobs.MiniSpider.EntityMiniSpider;
+import com.example.examplemod.mobs.Moa.EntityMoa;
+import com.example.examplemod.mobs.Moa.RenderMoa;
 import com.example.examplemod.util.LivingEntityHelper;
 import net.minecraft.client.Minecraft;
 import com.example.examplemod.mobs.ForestSpider.EntityForestSpider;
@@ -25,6 +27,9 @@ public class ExampleMod implements Mod {
         LivingEntityHelper.registerEntity(EntityForestSpider.class, "ForestSpider", 120);
         LivingEntityHelper.addEntityRenderMapping(EntityMiniSpider.class, new RenderSpider());
         LivingEntityHelper.registerEntity(EntityMiniSpider.class, "MiniSpider", 121);
+
+        LivingEntityHelper.addEntityRenderMapping(EntityMoa.class, new RenderMoa());
+        LivingEntityHelper.registerEntity(EntityMoa.class, "Moa", 122);
         System.out.println("[Spiders] should be Initialized.");
 
     }
