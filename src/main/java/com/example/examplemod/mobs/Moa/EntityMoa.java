@@ -49,12 +49,18 @@ public class EntityMoa extends EntityAnimal {
         if (this.riddenByEntity != null && this.riddenByEntity.isDead) {
             this.riddenByEntity = null;
         }
-        if (this.riddenByEntity != null) {
-            this.motionX += this.riddenByEntity.motionX * 1.4;
-            this.motionZ += this.riddenByEntity.motionZ * 1.4;
-            this.moveEntity(this.motionX, this.motionY > 0 ? 0 : this.motionY,this.motionZ);
+        if (this.riddenByEntity != null && !this.isDead) {
+
+//            this.moveEntity(this.motionX, this.motionY > 0 ? 0 : this.motionY,this.motionZ);
+            this.moveForward  = ((EntityPlayerSP)this.riddenByEntity).movementInput.moveForward * this.moveSpeed;
+            if(((EntityPlayerSP)this.riddenByEntity).movementInput.moveStrafe > 0){
+                rotationYaw+=1;
+            }else if(((EntityPlayerSP)this.riddenByEntity).movementInput.moveStrafe < 0){
+                rotationYaw-=1;
+            }
+            moveEntityWithHeading(this.moveStrafing, this.moveForward);
 //            if(this.riddenByEntity.rotationYaw != this.rotationYaw){
-                this.rotationYaw += 0.2*((EntityPlayerSP)this.riddenByEntity).movementInput.lookYaw;
+//                this.rotationYaw += 0.2*((EntityPlayerSP)this.riddenByEntity).movementInput.lookYaw;
 //            }
         }else{
             super.onUpdate();
