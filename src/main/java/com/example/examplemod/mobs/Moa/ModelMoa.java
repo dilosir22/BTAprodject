@@ -15,8 +15,8 @@ public class ModelMoa extends ModelBase {
         float f = 0.0F;
         int i = 15;
         this.moaHead = new ModelRenderer(32, 4);
-        this.moaHead.addBox(-4.0F, -33.0F, -13.0F, 8, 9, 12, f);
-        this.moaHead.setRotationPoint(0.0F, (float)(0 + i), -4.0F);
+        this.moaHead.addBox(-4.0F, -33.0F, -11.0F, 8, 9, 12, f);
+        this.moaHead.setRotationPoint(0.0F, (float)(0 + i), -10.0F);
         this.moaNeck = new ModelRenderer(0, 0);
         this.moaNeck.addBox(-2.0F, -30.0F, -8.0F, 4, 12, 4, f);
         this.moaNeck.setRotationPoint(0.0F, (float)i, 0.0F);

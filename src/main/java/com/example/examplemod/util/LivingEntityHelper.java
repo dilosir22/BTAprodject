@@ -11,6 +11,11 @@ public class LivingEntityHelper {
 
     static Field ERenderMap;
     static Method addMappingMethod;
+    public static Field LEmoveStrafing;
+    public static Field LEmoveForward;
+    public static Field LElookYaw;
+    public static Field LElookPitch;
+    public static Field LEisJumping;
 
 
     static {
@@ -39,6 +44,36 @@ public class LivingEntityHelper {
             if (addMappingMethod == null) throw new RuntimeException("Could not find (EntityList) addMapping method!");
             addMappingMethod.setAccessible(true);
         } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        try{
+            Field[] feilds = EntityLiving.class.getDeclaredFields();
+            for(Field feild : feilds) {
+                if(feild.getName().equals("moveStrafing")) {
+                    LEmoveStrafing = feild;
+                }else if(feild.getName().equals("moveForward")) {
+                    LEmoveForward = feild;
+                }else if(feild.getName().equals("lookYaw")) {
+                    LElookYaw = feild;
+                }else if(feild.getName().equals("lookPitch")) {
+                    LElookPitch = feild;
+                }else if(feild.getName().equals("isJumping")) {
+                    LEisJumping = feild;
+                }
+
+            }
+            if(LEmoveStrafing == null) throw new RuntimeException("Could not find LEmoveStrafing feild!");
+            LEmoveStrafing.setAccessible(true);
+            if(LEmoveForward == null) throw new RuntimeException("Could not find LEmoveForward feild!");
+            LEmoveForward.setAccessible(true);
+            if(LElookYaw == null) throw new RuntimeException("Could not find LElookYaw feild!");
+            LElookYaw.setAccessible(true);
+            if(LElookPitch == null) throw new RuntimeException("Could not find LElookPitch feild!");
+            LElookPitch.setAccessible(true);
+            if(LEisJumping == null) throw new RuntimeException("Could not find LEisJumping feild!");
+            LEisJumping.setAccessible(true);
+
+        }catch(Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -77,27 +112,45 @@ public class LivingEntityHelper {
             throw new RuntimeException(e);
         }
     }
-//
-//    public static Entity getClosestEntityToEntity(World worldObj, Entity entity, double d, Class<? extends Entity> type){
-//        return locateNearestEntity(worldObj, entity.posX, entity.posY, entity.posZ, d, type);
-//    }
-//
-//    public static Entity locateNearestEntity(World worldObj, double d, double d1, double d2, double d3, Class<? extends Entity> typ){
-//        double d4 = -1.0;
-//        Entity entity = null;
-//
-//        for(int i = 0; i < worldObj.loadedEntityList.size(); ++i) {
-//            Entity mob1 = worldObj.loadedEntityList.get(i);
-//            double d5 = mob1.getDistanceSq(d, d1, d2);
-//            if ((d3 < 0.0 || d5 < d3 * d3) && (d4 == -1.0 || d5 < d4)) {
-//                d4 = d5;
-//                if(mob1.getClass().isInstance(typ)){
-//                    entity = mob1;
-//                }
-//            }
-//        }
-//
-//        return entity;
-//    }
-
+    @SuppressWarnings("unchecked")
+    public static float getForward(Entity entity){
+        try{
+            return (float) LEmoveForward.get(entity);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+    @SuppressWarnings("unchecked")
+    public static float getStrafing(Entity entity){
+        try{
+            return (float) LEmoveStrafing.get(entity);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+    @SuppressWarnings("unchecked")
+    public static boolean getJumping(Entity entity){
+        try{
+            return (boolean) LEisJumping.get(entity);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+    @SuppressWarnings("unchecked")
+    public static float getLookYaw(Entity entity){
+        try{
+            return (float) LElookYaw.get(entity);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+    @SuppressWarnings("unchecked")
+    public static float getLookPitch(Entity entity){
+        try{
+            return (float) LElookPitch.get(entity);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }
+
