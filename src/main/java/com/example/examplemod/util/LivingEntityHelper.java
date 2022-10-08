@@ -84,19 +84,19 @@ public class LivingEntityHelper {
     public static void addCreature(SpawnListEntry creature, BiomeGenBase biome){
         biome.getSpawnableList(EnumCreatureType.creature).add(creature);
     }
+    public static void addToAllBiomes(SpawnListEntry creature, EnumCreatureType type){
+        for(BiomeGenBase biome : BiomeGenBase.biomeList){
+            biome.getSpawnableList(type).add(creature);
+        }
+    }
 
     @SuppressWarnings("unchecked")
     public static void addEntityRenderMapping(Class entity, Object renderer){
         try {
             if(ERenderMap.get(RenderManager.instance) instanceof HashMap) {
                 ((HashMap) ERenderMap.get(RenderManager.instance)).put(entity, renderer);
-
-
-                Iterator iterator = ((HashMap) ERenderMap.get(RenderManager.instance)).values().iterator();
-                while(iterator.hasNext()) {
-                    Render render = (Render)iterator.next();
-                    render.setRenderManager(RenderManager.instance);
-                }
+                Render render = (Render)(((HashMap) ERenderMap.get(RenderManager.instance)).get(entity));
+                render.setRenderManager(RenderManager.instance);
             }else{
                 System.out.println(entity.getName() + "'s renderer could not be added to rendermanager");
             }
