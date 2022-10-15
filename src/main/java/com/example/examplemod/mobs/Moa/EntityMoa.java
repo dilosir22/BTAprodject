@@ -14,10 +14,10 @@ public class EntityMoa extends EntityAnimal {
     public float field_755_h = 1.0F;
     public EntityMoa(World world) {
         super(world);
-        this.texture = "/mob/moa.png";
-        this.setSize(0.7f, 2.5f);
+        this.texture = "mob/moa.png";
+        this.setSize(0.8f, 3f);
         saddled = false;
-        this.moveSpeed = 1.5f;
+        this.moveSpeed = 2.3f;
         this.stepHeight = 1.0f;
         this.health = 24;
     }
@@ -192,7 +192,10 @@ public class EntityMoa extends EntityAnimal {
         }
 
         if (this.riddenByEntity != null && !this.isDead) {
-            this.setSize(0.7f, 1.8f);
+            if(height != 1.8){
+                this.height =  1.8f;
+                this.setPosition(this.posX, this.posY, this.posZ);
+            }
             stillUpdate();
             if( LivingEntityHelper.getJumping(this.riddenByEntity) && onGround){
                 this.jump();
@@ -215,8 +218,11 @@ public class EntityMoa extends EntityAnimal {
             }
 
         }else{
-            ignoreFrustumCheck =false;
-            this.setSize(0.7f, 2.5f);
+            if(height != 3){
+                ignoreFrustumCheck =false;
+                this.height = 3;
+                this.setPosition(this.posX, this.posY, this.posZ);
+            }
             super.onUpdate();
         }
     }

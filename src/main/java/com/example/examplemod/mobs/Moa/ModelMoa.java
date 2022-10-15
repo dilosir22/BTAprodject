@@ -10,25 +10,35 @@ public class ModelMoa extends ModelBase {
     public ModelRenderer moaBody;
     public ModelRenderer moaLegR;
     public ModelRenderer moaLegL;
+    public ModelRenderer moaTail;
 
-    public ModelMoa() {
-        float f = 0.0F;
-        int i = 15;
-        this.moaHead = new ModelRenderer(0, 32);
-        this.moaHead.addBox(-4.0F, -33.0F, -10.0F, 8, 9, 12, f);
-        this.moaHead.setRotationPoint(0.0F, (float)(0 + i), -4.0F);
-        this.moaNeck = new ModelRenderer(0, 0);
-        this.moaNeck.addBox(-2.0F, -30.0F, -8.0F, 4, 12, 4, f);
-        this.moaNeck.setRotationPoint(0.0F, (float)i, 0.0F);
-        this.moaBody = new ModelRenderer(0, 0);
-        this.moaBody.addBox(-8.0F, -20.0F, -16.0F, 16, 16, 16, f);
-        this.moaBody.setRotationPoint(0.0F, (float)(0 + i), 9.0F);
-        this.moaLegR = new ModelRenderer(40,32);
-        this.moaLegR.addBox(7.0f, -6.0F, 0.0F, 4, 16, 4, f);
-        this.moaLegR.setRotationPoint(-4.0F, (float)(0 + i), 2.0F);
-        this.moaLegL = new ModelRenderer(40,32);
-        this.moaLegL.addBox(-11.0F, -6.0F, 0.0F, 4, 16, 4, f);
-        this.moaLegL.setRotationPoint(4.0F, (float)(0 + i), 2.0F);
+    public ModelMoa()
+    {
+
+        moaHead = new ModelRenderer(0, 0);
+        moaHead.addBox(-3F, -9F, -13F, 6, 9, 13);
+        moaHead.setRotationPoint(0F, -16F, -5F);
+        moaHead.mirror = true;
+        moaBody = new ModelRenderer( 0, 0);
+        moaBody.addBox(-6F, -11F, -8F, 12, 12, 16);
+        moaBody.setRotationPoint(0F, 4F, 2F);
+        moaBody.mirror = true;
+        moaNeck = new ModelRenderer( 0, 0);
+        moaNeck.addBox(-2F, -16F, -3F, 4, 16, 4);
+        moaNeck.setRotationPoint(0F, -4F, -5F);
+        moaNeck.mirror = true;
+        moaLegR = new ModelRenderer( 0, 0);
+        moaLegR.addBox(-2F, 0F, -2F, 4, 20, 4);
+        moaLegR.setRotationPoint(3F, 4F, 2F);
+        moaLegR.mirror = true;
+        moaLegL = new ModelRenderer( 0, 0);
+        moaLegL.addBox(-2F, 0F, -2F, 4, 20, 4);
+        moaLegL.setRotationPoint(-3F, 4F, 2F);
+        moaLegL.mirror = true;
+        moaTail = new ModelRenderer( 0, 0);
+        moaTail.addBox(-5F, 0F, 0F, 10, 11, 0);
+        moaTail.setRotationPoint(0F, -5F, 10F);
+        moaTail.mirror = true;
     }
 
     public void render(float f, float f1, float f2, float f3, float f4, float f5) {
@@ -38,11 +48,14 @@ public class ModelMoa extends ModelBase {
         this.moaBody.render(f5);
         this.moaLegR.render(f5);
         this.moaLegL.render(f5);
+        this.moaTail.render(f5);
     }
 
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {
-        this.moaHead.rotateAngleY = f3 / 60.0F;
-        this.moaHead.rotateAngleX = f4 / 60.0F;
+
+        this.moaTail.rotateAngleX = -30.0f;
+        this.moaHead.rotateAngleY = f3 / 70.0F;
+        this.moaHead.rotateAngleX = f4 / 70.0F;
         this.moaLegR.rotateAngleX = MathHelper.cos(f * 0.6662F) * 0.9F * f1;
         this.moaLegL.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.141593F) * 0.9F * f1;
     }
