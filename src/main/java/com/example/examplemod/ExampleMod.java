@@ -15,7 +15,7 @@ public class ExampleMod implements Mod {
 
     @Override
     public void init(Minecraft minecraft) {
-        Item.toolBow = (new ItemTieredBow(5, 15)).setIconCoord(0, 14).setItemName("tool.bow");
+        Item.toolBow = (new ItemTieredBow(5, 12, 20)).setIconCoord(0, 14).setItemName("tool.bow");
 
         LivingEntityHelper.addMonster( new SpawnListEntry(EntityForestSpider.class, 10), BiomeGenBase.seasonalForest);
         LivingEntityHelper.addEntityRenderMapping(EntityForestSpider.class, new RenderForestSpider());
